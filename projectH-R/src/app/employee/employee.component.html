@@ -1,0 +1,235 @@
+<p>employee works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>employes</title>
+</head>
+<body>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button"class="btn btn-primary"
+        [class.expanded]="click1"
+        (click)="onclick1()"
+        (click)="addEmployee()"
+        >add </button>
+        <button type="button" class="btn btn-primary"[class.expanded]="click"
+        (click)="onclick()"
+        (click)="getEmployee()">get</button>
+        <button type="button" class="btn btn-primary">update</button>
+      </div>
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr *ngIf = "click">
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">salary</th>
+            <th scope="col"> email</th>
+            <th scope="col"> age</th>
+            <th scope="col"> gender</th>
+            <th scope="col"> position</th>
+            <th scope="col">dateCreat_of </th>
+            <th scope="col"> option </th>
+          </tr>
+        </thead>
+        <tbody *ngIf="click">
+            <!-- <div *ngif="click"> -->
+            <tr *ngFor="let employee of data;index as i">
+                <th scope="row">{{i+1}}</th>
+                <td >{{employee.name}}</td>
+                <td>{{employee.salary}}</td>
+                <td>{{employee.email}}</td>
+                <td>{{ employee.age}} </td>
+                <td>{{ employee.gender}} </td>
+                <td>{{ employee.position}} </td>
+                <td>{{ employee.dateCreat_of}} </td>
+                <td> <button class="btn" (click)="deleteEmployee(employee.id)"> delete
+                  <i class="fa fa-trash" style="color: #d32f2f"></i>
+                </button>
+                <td>
+                  <a href="employee/:id" >
+                  <button class="btn" (click)="getEmployeeById(employee.id)" > view profil
+                  <i class="fa fa-trash" style="color: #d32f2f"></i>
+                </button>
+              </a>
+          </tr>
+        </tbody>
+       </table>
+        <!-- <div class="submit-form">
+          <div *ngIf="!submitted">
+            <div class="form-group"> -->
+             <form *ngIf="click1"> -->
+  <input
+  type="text"
+  class="form-control"
+  id="name"
+  placeholder="name employee"
+  required
+  [(ngModel)]="employee.name"
+  name="name"
+/>
+
+<input
+type="text"
+class="form-control"
+placeholder="salary"
+id="salary"
+required
+[(ngModel)]="employee.salary"
+name="salary"
+/>
+<input
+type="text"
+placeholder="email"
+class="form-control"
+id="email"
+required
+[(ngModel)]="employee.email"
+name="email"
+/>
+<input
+type="text"
+placeholder="password"
+class="form-control"
+id="password"
+required
+[(ngModel)]="employee.password"
+name="password"
+/>
+<input
+type="text"
+class="form-control"
+placeholder="age"
+id="age"
+required
+[(ngModel)]="employee.age"
+name="age"
+/>
+/>
+<input
+placeholder="position"
+type="text"
+class="form-control"
+id="position"
+required
+[(ngModel)]="employee.position"
+name="position"
+/>
+<input
+placeholder="gender"
+type="text"
+class="form-control"
+id="gender"
+required
+[(ngModel)]="employee.gender"
+name="gender"
+/>
+<input
+placeholder="Experience"
+type="text"
+class="form-control"
+id="Experience"
+required
+[(ngModel)]="employee.Experience"
+name="Experience"
+/>
+<!-- <input
+placeholder="section"
+type="text"
+class="form-control"
+id="section"
+required
+[(ngModel)]="employee.section_id"
+name="section_id"
+/>
+<select class="form-select" (click)="getsection()" name="section_id"[(ngModel)] ="">
+  
+  <option  *ngFor="let section of data"  [value]="">{{section.name}}
+  </option> -->
+  
+<!-- </select> -->
+</form>
+
+<button (click)="addEmployee()" class="btn btn-success">Submit</button>
+<div *ngIf="submitted">
+  <h4>You submitted successfully!</h4>
+</div>
+<!-- <input type="text",name=id>
+<button (click)="deleteEmployee(id)">delete</button> -->
+
+<div>
+  <div *ngIf="employee.id" class="edit-form">
+    <h4>Tutorial</h4>
+    <form>
+      <div class="form-group">
+        <label for="name">name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="employee.name"
+          name="name"
+        />
+      </div>
+      <div class="form-group">
+        <label for="Email">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="employee.email"
+          name="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label><strong>Status:</strong></label>
+        {{ employee.salary }}
+      </div>
+    </form>
+<!-- 
+    <button
+      class="badge badge-primary mr-2"
+      *ngIf="currentTutorial.published"
+      (click)="updatePublished(false)"
+    >
+      UnPublish
+    </button>
+    <button
+      *ngIf="!currentTutorial.published"
+      class="badge badge-primary mr-2"
+      (click)="updatePublished(true)"
+    > -->
+      
+    <!-- </button> -->
+
+    <button class="badge badge-danger mr-2" (click)="deleteEmployee(employee.id)">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updated()"
+    >
+      updated
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!employee.id">
+    <br />
+    <p>Cannot access this Tutorial...</p>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>
